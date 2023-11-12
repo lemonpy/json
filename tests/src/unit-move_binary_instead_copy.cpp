@@ -20,7 +20,7 @@ class Buffer : public std::vector<char>
     ~Buffer() = default;
 
     Buffer(Buffer&& other) noexcept
-      : MyBase(std::move(other))
+        : MyBase(std::move(other))
     {}
 
     Buffer& operator=(Buffer&& other) noexcept
@@ -42,17 +42,17 @@ class Buffer : public std::vector<char>
     }
 };
 
-using json = nlohmann::basic_json<
-    std::map,
-    std::vector,
-    std::string,
-    bool,
-    std::int64_t,
-    std::uint64_t,
-    double,
-    std::allocator,
-    nlohmann::adl_serializer,
-    Buffer /* binary_t */>;
+using json = nlohmann::basic_json <
+             std::map,
+             std::vector,
+             std::string,
+             bool,
+             std::int64_t,
+             std::uint64_t,
+             double,
+             std::allocator,
+             nlohmann::adl_serializer,
+             Buffer /* binary_t */ >;
 
 TEST_CASE("use move instead of copying the binary value")
 {
