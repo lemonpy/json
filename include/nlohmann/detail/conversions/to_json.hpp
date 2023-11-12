@@ -349,6 +349,12 @@ inline void to_json(BasicJsonType& j, const typename BasicJsonType::binary_t& bi
     external_constructor<value_t::binary>::construct(j, bin);
 }
 
+template<typename BasicJsonType>
+inline void to_json(BasicJsonType& j, typename BasicJsonType::binary_t&& bin)
+{
+    external_constructor<value_t::binary>::construct(j, std::move(bin));
+}
+
 template<typename BasicJsonType, typename T,
          enable_if_t<std::is_convertible<T, BasicJsonType>::value, int> = 0>
 inline void to_json(BasicJsonType& j, const std::valarray<T>& arr)
